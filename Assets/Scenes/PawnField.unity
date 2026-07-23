@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 1612367191}
   - component: {fileID: 1612367190}
   - component: {fileID: 1612367189}
+  - component: {fileID: 1612367193}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -347,6 +348,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612367193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612367188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d83f3f0b5d67d4e8b34bd07fc8f396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeshRenderer: {fileID: 1612367190}
 --- !u!1 &1678163479
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +409,8 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _gameZone: {fileID: 1612367193}
+  _camera: {fileID: 4796405414607977319}
   _crazyPawnSettings: {fileID: 11400000, guid: c3b00c709b1f94f22a212add39c80449, type: 2}
   _prefabView: {fileID: -8987383914810767832, guid: b851d45c117f4b44c8eda9c0e1d19a17,
     type: 3}
@@ -466,6 +482,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368457728b5d74561b805d9bb789017e, type: 3}
+--- !u!20 &4796405414607977319 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1559381485759989653, guid: 368457728b5d74561b805d9bb789017e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4796405414607977316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

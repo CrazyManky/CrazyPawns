@@ -1,12 +1,15 @@
 using CrazyPawn;
 using Factorys;
 using Pawn;
+using Services;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
 public class EntryPoint : LifetimeScope
 {
+    [SerializeField] private GameZone _gameZone;
+    [SerializeField] private Camera _camera;
     [SerializeField] private CrazyPawnSettings _crazyPawnSettings;
     [SerializeField] private PawnView _prefabView;
 
@@ -14,7 +17,12 @@ public class EntryPoint : LifetimeScope
     {
         builder.RegisterComponent(_crazyPawnSettings);
         builder.RegisterInstance(_prefabView);
+        builder.RegisterInstance(_camera);
+        builder.RegisterInstance(_gameZone);
+        builder.Register<CrazyPawnsInputs>(Lifetime.Singleton);
         builder.Register<PawnFactory>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+        builder.Register<KeyBoardInputHandler>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+        builder.Register<CameraMovementController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
     }
 
     private void Start()
