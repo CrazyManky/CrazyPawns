@@ -391,9 +391,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113a16cc0ab63ad47aaa1c4dd6f955e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pawnCreate:
-    _prefabView: {fileID: -8987383914810767832, guid: b851d45c117f4b44c8eda9c0e1d19a17,
-      type: 3}
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+  _crazyPawnSettings: {fileID: 11400000, guid: c3b00c709b1f94f22a212add39c80449, type: 2}
+  _prefabView: {fileID: -8987383914810767832, guid: b851d45c117f4b44c8eda9c0e1d19a17,
+    type: 3}
 --- !u!1001 &4796405414607977316
 PrefabInstance:
   m_ObjectHideFlags: 0

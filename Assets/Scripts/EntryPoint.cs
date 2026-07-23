@@ -1,30 +1,24 @@
-using System;
 using CrazyPawn;
+using Factorys;
 using Pawn;
 using UnityEngine;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
+using VContainer;
+using VContainer.Unity;
 
-public class EntryPoint : MonoBehaviour
-{
-    [SerializeField] private PawnFactory pawnFactory;
-
-    private void Start() => pawnFactory.CreatePawn();
-}
-
-[Serializable]
-public class PawnFactory
+public class EntryPoint : LifetimeScope
 {
     [SerializeField] private CrazyPawnSettings _crazyPawnSettings;
     [SerializeField] private PawnView _prefabView;
 
-    public void CreatePawn()
+    protected override void Configure(IContainerBuilder builder)
     {
-        for (int i = 0; i <= _crazyPawnSettings.InitialPawnCount; i++)
-        {
-            var instance = Object.Instantiate(_prefabView);
-            Vector2 point = Random.insideUnitCircle * _crazyPawnSettings.InitialZoneRadius;
-            instance.transform.position = new Vector3(point.x, 0, point.y);
-        }
+        builder.RegisterComponent(_crazyPawnSettings);
+        builder.RegisterInstance(_prefabView);
+        builder.Register<PawnFactory>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+    }
+
+    private void Start()
+    {
+        var factory = Container.Resolve<PawnFactory>();
     }
 }
