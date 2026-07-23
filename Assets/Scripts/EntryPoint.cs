@@ -23,10 +23,12 @@ public class EntryPoint : LifetimeScope
         builder.Register<PawnFactory>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<KeyBoardInputHandler>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<CameraMovementController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+        builder.Register<DragAndDropService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
     }
 
     private void Start()
     {
         var factory = Container.Resolve<PawnFactory>();
+        var dragAndDropService = Container.Resolve<DragAndDropService>();
     }
 }

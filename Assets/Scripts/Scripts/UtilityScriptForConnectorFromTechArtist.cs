@@ -1,5 +1,10 @@
+using Pawn;
 using UnityEngine;
 
-public class UtilityScriptForConnectorFromTechArtist : MonoBehaviour
+namespace Scripts
 {
+    public class UtilityScriptForConnectorFromTechArtist : MonoBehaviour
+    {
+        [field: SerializeField] public PawnView PanView { get; private set; }
+    }
 }

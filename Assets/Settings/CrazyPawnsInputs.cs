@@ -35,6 +35,15 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ClickLeftButtton"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a94ad6f-828e-42da-9b93-9c7c0c1265d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -136,6 +145,17 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd25b36d-9867-42a9-98b8-cb31c7d30755"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClickLeftButtton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_ClickLeftButtton = m_Player.FindAction("ClickLeftButtton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,11 +289,13 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_ClickLeftButtton;
     public struct PlayerActions
     {
         private @CrazyPawnsInputs m_Wrapper;
         public PlayerActions(@CrazyPawnsInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @ClickLeftButtton => m_Wrapper.m_Player_ClickLeftButtton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +308,9 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @ClickLeftButtton.started += instance.OnClickLeftButtton;
+            @ClickLeftButtton.performed += instance.OnClickLeftButtton;
+            @ClickLeftButtton.canceled += instance.OnClickLeftButtton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -292,6 +318,9 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @ClickLeftButtton.started -= instance.OnClickLeftButtton;
+            @ClickLeftButtton.performed -= instance.OnClickLeftButtton;
+            @ClickLeftButtton.canceled -= instance.OnClickLeftButtton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +386,6 @@ public partial class @CrazyPawnsInputs: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnClickLeftButtton(InputAction.CallbackContext context);
     }
 }

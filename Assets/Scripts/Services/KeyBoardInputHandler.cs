@@ -10,7 +10,10 @@ namespace Services
     {
         private CrazyPawnsInputs _inputActionAsset;
         private InputAction _moveAction;
+        private InputAction _buttonClickAction;
         public Vector2 Direction { get; private set; }
+        public InputAction DragButton => _buttonClickAction;
+
 
         [Inject]
         public KeyBoardInputHandler(CrazyPawnsInputs inputActionAsset)
@@ -21,7 +24,9 @@ namespace Services
         public void Initialize()
         {
             _moveAction = _inputActionAsset.Player.Move;
+            _buttonClickAction = _inputActionAsset.Player.ClickLeftButtton;
             _moveAction.Enable();
+            _buttonClickAction.Enable();
         }
 
         public void Tick()

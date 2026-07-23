@@ -1,5 +1,5 @@
 {
-    "name": "CrazyPawns",
+    "name": "CrazyPawnsInputs",
     "maps": [
         {
             "name": "Player",
@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ClickLeftButtton",
+                    "type": "Button",
+                    "id": "5a94ad6f-828e-42da-9b93-9c7c0c1265d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -114,6 +123,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dd25b36d-9867-42a9-98b8-cb31c7d30755",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickLeftButtton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
