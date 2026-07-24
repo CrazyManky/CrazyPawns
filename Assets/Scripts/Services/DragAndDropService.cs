@@ -1,4 +1,5 @@
 using System;
+using Factorys;
 using Interfaces;
 using Pawn;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace Services
     {
         private IInputHandler _inputHandler;
         private Camera _camera;
-        private GameZone _gameZone;
+        private IValidatePlacement _gameZone;
+        private IPawnRemover _pawnRemover;
 
         private PawnView _dragObject;
         private Vector3 _offset;
@@ -21,11 +23,12 @@ namespace Services
         private bool _isDragging = false;
 
         [Inject]
-        public DragAndDropService(IInputHandler inputHandler, Camera camera, GameZone gameZone)
+        public DragAndDropService(IInputHandler inputHandler, Camera camera, IValidatePlacement gameZone, IPawnRemover pawnRemover)
         {
             _inputHandler = inputHandler;
             _camera = camera;
             _gameZone = gameZone;
+            _pawnRemover = pawnRemover;
         }
 
         public void Initialize()
@@ -76,6 +79,11 @@ namespace Services
         {
             if (context.canceled)
             {
+                if (!_gameZone.Contains(_dragObject.Bounds))
+                {
+                    _pawnRemover.Remove(_dragObject);
+                }
+
                 _dragObject = null;
                 _isDragging = false;
             }

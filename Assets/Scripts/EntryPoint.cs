@@ -18,7 +18,7 @@ public class EntryPoint : LifetimeScope
         builder.RegisterComponent(_crazyPawnSettings);
         builder.RegisterInstance(_prefabView);
         builder.RegisterInstance(_camera);
-        builder.RegisterInstance(_gameZone);
+        builder.RegisterInstance(_gameZone).AsImplementedInterfaces().AsSelf();
         builder.Register<CrazyPawnsInputs>(Lifetime.Singleton);
         builder.Register<PawnFactory>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<KeyBoardInputHandler>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();

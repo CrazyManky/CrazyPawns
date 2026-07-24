@@ -11,10 +11,10 @@ using Random = UnityEngine.Random;
 namespace Factorys
 {
     [Serializable]
-    public class PawnFactory : IInitializable
+    public class PawnFactory : IInitializable, IPawnRemover
     {
-         private CrazyPawnSettings _crazyPawnSettings;
-         private PawnView _prefabView;
+        private CrazyPawnSettings _crazyPawnSettings;
+        private PawnView _prefabView;
 
         [Inject]
         public PawnFactory(CrazyPawnSettings crazyPawnSettings, PawnView prefabView)
@@ -32,5 +32,15 @@ namespace Factorys
                 instance.transform.position = new Vector3(point.x, 0, point.y);
             }
         }
+
+        public void Remove(PawnView pawn)
+        {
+            Object.Destroy(pawn.gameObject);
+        }
+    }
+
+    public interface IPawnRemover
+    {
+        public void Remove(PawnView pawn);
     }
 }

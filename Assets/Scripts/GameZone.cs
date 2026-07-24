@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class GameZone : MonoBehaviour
+public class GameZone : MonoBehaviour, IValidatePlacement
 {
     public MeshRenderer MeshRenderer;
 
@@ -17,4 +17,9 @@ public class GameZone : MonoBehaviour
     {
         return _bounds.Intersects(bounds);
     }
+}
+
+public interface IValidatePlacement
+{
+    bool Contains(Bounds bounds);
 }

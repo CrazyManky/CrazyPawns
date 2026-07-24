@@ -42,7 +42,7 @@ namespace Pawn
 
         public void SetPlacementState(bool inZone)
         {
-            var color = inZone ? _delitedColor : _defaultColor;
+            var color = inZone ? _defaultColor : _delitedColor;
             _materialPropertyBlock.SetColor(BaseMap, color);
 
             foreach (var meshRenderer in _meshRenderers)
